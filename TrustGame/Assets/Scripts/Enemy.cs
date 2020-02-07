@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     Player player = null;
     Rigidbody2D rb = null;
     float speed = 100.0f;
+    [SerializeField] GameObject deadEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,10 @@ public class Enemy : MonoBehaviour
         Vector2 toPlayer = player.transform.position.xy() - transform.position.xy();
 
         rb.velocity = toPlayer.normalized * Time.deltaTime * speed;
+
+        float angle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(.0f, .0f, angle+90.0f);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -36,6 +41,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Bullet")) 
         {
+            Instantiate(deadEnemy, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
