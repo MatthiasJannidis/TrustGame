@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class GunPickup : MonoBehaviour
 {
-
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip locknLoadClip;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             Player p = collision.gameObject.GetComponent<Player>();
             p.OnGunPickup();
-            Destroy(gameObject);
+            audioSource.PlayOneShot(locknLoadClip);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject,locknLoadClip.length);
         }
     }
 }

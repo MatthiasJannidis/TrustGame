@@ -11,7 +11,13 @@ public class Player : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] float speed = .0f;
-
+    [SerializeField] AudioClip stepClip01 = null;
+    [SerializeField] AudioClip stepClip02 = null;
+    [SerializeField] AudioClip stepClip03 = null;
+    [SerializeField] AudioSource stepSource = null;
+    AudioClip[] stepClips = new AudioClip[3];
+    float stepSpeed = 0.35f;
+    float stepTimer = 0;
 
     [Header("Shooting")]
     [SerializeField] float shootTimer = .0f;
@@ -21,6 +27,8 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject bulletPrefab = null;
     [SerializeField] Transform bulletSpawnPoint = null;
     [SerializeField] Light muzzleFlash = null;
+    [SerializeField] AudioSource shootSource = null;
+    [SerializeField] AudioClip shootClip = null;
 
 
     Rigidbody2D rb;
@@ -37,6 +45,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        
+        stepClips[0] = stepClip01;
+        stepClips[1] = stepClip02;
+        stepClips[2] = stepClip03;
         //flashLight.SetActive(false);
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -65,7 +77,13 @@ public class Player : MonoBehaviour
 
         if (Vector2.SqrMagnitude(moveDirection) > .001f)
         {
-
+            if(stepSpeed <= stepTimer)
+            {
+                int stepSound = Random.Range(0, 2);
+                stepSource.PlayOneShot(stepClips[stepSound]);
+                stepTimer = 0;
+            }
+            stepTimer += Time.deltaTime;
             animator.speed = rb.velocity.magnitude * .1f;
         }
         else
@@ -123,7 +141,8 @@ public class Player : MonoBehaviour
             var bulletRigidbody = g.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = shootingDir * bulletsSpeed;
         }
-
+        shootTimeout = true;
+        shootSource.PlayOneShot(shootClip);
         StartCoroutine(ShootTimer());
         StartCoroutine(HandleMuzzleFlash());
     }

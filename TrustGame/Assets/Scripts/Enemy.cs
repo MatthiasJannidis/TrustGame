@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     float speed = 100.0f;
     [SerializeField] GameObject deadEnemy;
 
+
     // Start is called before the first frame update
     void Start()
     {
