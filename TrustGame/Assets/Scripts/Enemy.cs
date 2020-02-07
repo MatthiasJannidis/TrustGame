@@ -26,6 +26,17 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        
+        if (collision.gameObject.CompareTag("Player")) 
+        {
+            collision.gameObject.GetComponent<Player>().OnEnemyCollisionStay();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet")) 
+        {
+            Destroy(gameObject);
+        }
     }
 }

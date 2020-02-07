@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     bool canShoot = false;
     bool shootTimeout = false;
 
+    float heartCounter = .0f;
+
     void Start()
     {
         //flashLight.SetActive(false);
@@ -81,6 +83,12 @@ public class Player : MonoBehaviour
     public void OnFlashlightPickup() 
     {
         flashLight.SetActive(true);
+    }
+
+    public void OnEnemyCollisionStay() 
+    {
+        heartCounter += Time.deltaTime;
+        //todo : update heart counter
     }
 
     void Shoot(Vector3 lookingAt)
