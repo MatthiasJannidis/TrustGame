@@ -10,7 +10,8 @@ public class Door : MonoBehaviour
     {
         if (collision.CompareTag("Bullet")) 
         {
-            Instantiate(destroyedDoorPrefab, transform.position, transform.rotation);
+            //todo : spawn splinters
+            //Instantiate(destroyedDoorPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
