@@ -5,13 +5,13 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     [SerializeField] GameObject destroyedDoorPrefab;
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Bullet")) 
         {
             //todo : spawn splinters
-            //Instantiate(destroyedDoorPrefab, transform.position, transform.rotation);
+            Instantiate(destroyedDoorPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
