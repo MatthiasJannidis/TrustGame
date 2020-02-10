@@ -128,6 +128,11 @@ public class Player : MonoBehaviour
         hearts.IncrementHealth(Time.deltaTime);
     }
 
+    public Transform GetFlashlightTransform()
+    {
+        return flashLight.transform;
+    }
+
     void Shoot(Vector3 lookingAt)
     {
         for(int i = 0; i < bulletNumber; i++) 

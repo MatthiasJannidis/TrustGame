@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Bullet")) 
         {
-            Instantiate(deadEnemy, transform.position, transform.rotation);
+            Instantiate(deadEnemy, transform.position, transform.rotation*Quaternion.Euler(.0f,.0f,-90.0f));
             Destroy(gameObject);
         }
     }

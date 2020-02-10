@@ -15,7 +15,7 @@ public class FakeShadow : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         Player p = FindObjectOfType<Player>();
-        lightEmitter = p.transform;
+        lightEmitter = p.GetFlashlightTransform();
     }
 
     private void Update()
