@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("UI")]
     [SerializeField] Hearts hearts;
+    [SerializeField] AmmoUI ammoUI;
 
     [Header("Movement")]
     [SerializeField] float speed = .0f;
@@ -111,6 +112,7 @@ public class Player : MonoBehaviour
     public void OnGunPickup()
     {
         bulletSpawnPoint.gameObject.SetActive(true);
+        ammoUI.OnAmmoChanged(5);
         canShoot = true;
     }
 
@@ -132,7 +134,9 @@ public class Player : MonoBehaviour
     public bool addAmmo() 
     {
         if (ammo == 5) return false;
+
         ammo++;
+        ammoUI.OnAmmoChanged(ammo);
         return true;
     } 
 
@@ -159,6 +163,7 @@ public class Player : MonoBehaviour
                 return;
             }
             ammo--;
+            ammoUI.OnAmmoChanged(ammo);
             Vector2 r = Random.insideUnitCircle;
             Vector2 shootingDir = new Vector2(lookingAt.x, lookingAt.y).normalized + r*bulletsSpread;
             GameObject g = bulletBuffer.getNextValue();

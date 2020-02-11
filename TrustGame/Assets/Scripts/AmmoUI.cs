@@ -10,7 +10,12 @@ public class AmmoUI : MonoBehaviour
     {
         for(int i = 0; i < images.Length; i++) 
         {
-            images[i].enabled = (i < ammo);
+            images[i].enabled = (ammo>i);
         }
+    }
+
+    private void Start()
+    {
+        OnAmmoChanged(0);
     }
 }
