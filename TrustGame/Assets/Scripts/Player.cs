@@ -42,10 +42,10 @@ public class Player : MonoBehaviour
 
     bool canShoot = false;
     bool shootTimeout = false;
+    int ammo = 5;
 
     void Start()
     {
-        
         stepClips[0] = stepClip01;
         stepClips[1] = stepClip02;
         stepClips[2] = stepClip03;
@@ -94,11 +94,6 @@ public class Player : MonoBehaviour
         moveDirection.Normalize();
         rb.velocity = new Vector3(moveDirection.x, moveDirection.y, .0f) * speed * Time.deltaTime;
         
-        
-        
-
-      
-
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
         Vector3 lookAt = mousePos - transform.position;
@@ -133,10 +128,36 @@ public class Player : MonoBehaviour
         return flashLight.transform;
     }
 
+    public bool addAmmo() 
+    {
+        if (ammo == 5) return false;
+        ammo++;
+        return true;
+    } 
+
+    void OnNoAmmo() { }
+
     void Shoot(Vector3 lookingAt)
     {
-        for(int i = 0; i < bulletNumber; i++) 
+        if (ammo < 1)
         {
+            OnNoAmmo();
+            return;
+        }
+
+        shootTimeout = true;
+        shootSource.PlayOneShot(shootClip);
+        StartCoroutine(ShootTimer());
+        StartCoroutine(HandleMuzzleFlash());
+
+        for (int i = 0; i < bulletNumber; i++) 
+        {
+            if (ammo < 1) 
+            {
+                OnNoAmmo();
+                return;
+            }
+            ammo--;
             Vector2 r = Random.insideUnitCircle;
             Vector2 shootingDir = new Vector2(lookingAt.x, lookingAt.y).normalized + r*bulletsSpread;
             GameObject g = bulletBuffer.getNextValue();
@@ -146,10 +167,6 @@ public class Player : MonoBehaviour
             var bulletRigidbody = g.GetComponent<Rigidbody2D>();
             bulletRigidbody.velocity = shootingDir * bulletsSpeed;
         }
-        shootTimeout = true;
-        shootSource.PlayOneShot(shootClip);
-        StartCoroutine(ShootTimer());
-        StartCoroutine(HandleMuzzleFlash());
     }
 
     IEnumerator ShootTimer() 
