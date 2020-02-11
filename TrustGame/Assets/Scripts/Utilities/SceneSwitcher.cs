@@ -11,16 +11,7 @@ public class SceneSwitcher : MonoBehaviour
     public enum SCENE_SWITCH_TYPE
     {
         INSTANT,
-        DIALOG,
         TRANSITION
-    }
-
-    public static readonly string sceneChangeTag = "SceneChange";
-
-    //necessary for button callbacks
-    public void SceneChangeDialog(string s)
-    {
-        SceneChange(s, SCENE_SWITCH_TYPE.DIALOG);
     }
 
     public void SceneChangeTransition(string s)
