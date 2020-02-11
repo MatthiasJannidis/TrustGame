@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     Rigidbody2D rb;
     [Header("Flashlight")]
     [SerializeField] GameObject flashLight = null;
+    [SerializeField] float damageMod = 1.2f;
 
     const int bufferSize = 100;
     RingBuffer<GameObject> bulletBuffer = null;
@@ -120,7 +121,7 @@ public class Player : MonoBehaviour
 
     public void OnEnemyCollisionStay() 
     {
-        hearts.IncrementHealth(Time.deltaTime);
+        hearts.IncrementHealth(Time.deltaTime*damageMod);
     }
 
     public Transform GetFlashlightTransform()
