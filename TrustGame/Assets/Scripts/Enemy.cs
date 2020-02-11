@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     Player player = null;
     Rigidbody2D rb = null;
-    float speed = 1.0f;
+    float speed = 3.0f;
     [SerializeField] GameObject deadEnemy;
 
 
