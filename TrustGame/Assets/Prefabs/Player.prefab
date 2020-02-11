@@ -276,7 +276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hearts: {fileID: 0}
   ammoUI: {fileID: 0}
-  speed: 200
+  speed: 3
   stepClip01: {fileID: 8300000, guid: 8642dde3004c7644c9df9b3258d4663f, type: 3}
   stepClip02: {fileID: 8300000, guid: 43645a3607d50ec449130a1bdaacb553, type: 3}
   stepClip03: {fileID: 8300000, guid: 1835407fdcfc6634aa3cd80fb6315207, type: 3}

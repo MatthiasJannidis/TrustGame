@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
+    static int layer = 1;
+
+
     Player player = null;
     Rigidbody2D rb = null;
     float speed = 100.0f;
@@ -16,6 +19,9 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = FindObjectOfType<Player>();
+        GetComponent<SpriteRenderer>().sortingOrder = layer;
+        layer++;
+        if (layer > 19) layer = 0;
     }
 
     // Update is called once per frame
@@ -42,7 +48,11 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag("Bullet")) 
         {
-            Instantiate(deadEnemy, transform.position, transform.rotation*Quaternion.Euler(.0f,.0f,-90.0f));
+            GameObject obj = Instantiate(deadEnemy, transform.position, transform.rotation*Quaternion.Euler(.0f,.0f,-90.0f));
+            obj.GetComponent<SpriteRenderer>().sortingOrder = layer-19;
+            layer++;
+            if (layer > 19) layer = 0;
+
             Destroy(gameObject);
         }
     }

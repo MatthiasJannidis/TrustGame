@@ -95,7 +95,7 @@ public class Player : MonoBehaviour
         }
 
         moveDirection.Normalize();
-        rb.velocity = new Vector3(moveDirection.x, moveDirection.y, .0f) * speed * Time.deltaTime;
+        rb.velocity = new Vector3(moveDirection.x, moveDirection.y, .0f) * speed;
         
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = transform.position.z;
