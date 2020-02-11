@@ -68,9 +68,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
+  m_Offset: {x: 0.014814616, y: -0.008434447}
+  m_Size: {x: 0.52962977, y: 0.29918012}
+  m_Direction: 1
 --- !u!212 &2719537349966998984
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -132,5 +132,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25d4da833cd1dcc4092fd5d7b481706a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
-  bloodimpact: {fileID: 8300000, guid: f95eae9c962b8aa4f874e56d258711dc, type: 3}

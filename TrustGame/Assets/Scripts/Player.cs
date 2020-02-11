@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     [SerializeField] Light muzzleFlash = null;
     [SerializeField] AudioSource shootSource = null;
     [SerializeField] AudioClip shootClip = null;
+    [SerializeField] AudioClip emptyGun = null;
 
 
     Rigidbody2D rb;
@@ -140,12 +141,15 @@ public class Player : MonoBehaviour
         return true;
     } 
 
-    void OnNoAmmo() { }
+    void OnNoAmmo() {
+        shootSource.PlayOneShot(emptyGun);
+    }
 
     void Shoot(Vector3 lookingAt)
     {
         if (ammo < 1)
         {
+
             OnNoAmmo();
             return;
         }
