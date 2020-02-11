@@ -36,7 +36,7 @@ public class Hearts : MonoBehaviour
     {
         currentHealth += health * healthRegenSpeed;
         UpdateHearts();
-        if (currentHealth >= goalHealth) { Debug.Log("You won!"); } //todo: win condition
+        if (currentHealth >= goalHealth) { FindObjectOfType<SceneSwitcher>().SceneChange("EndScreen"); } //todo: win condition
     }
 
     void UpdateHearts() 
