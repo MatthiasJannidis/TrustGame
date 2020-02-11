@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
 
     Player player = null;
     Rigidbody2D rb = null;
-    float speed = 100.0f;
+    float speed = 1.0f;
     [SerializeField] GameObject deadEnemy;
 
 
@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     {
         Vector2 toPlayer = player.transform.position.xy() - transform.position.xy();
 
-        rb.velocity = toPlayer.normalized * Time.deltaTime * speed;
+        rb.velocity = toPlayer.normalized * speed;
 
         float angle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
 
